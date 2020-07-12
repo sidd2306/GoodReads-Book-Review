@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<a href="{{ url_for('auth.logout') }}"><button type="button" class="logout">Logout</button></a>
+<h3><br><br>Hi, {{ name }}! Which book would you like to review?</h3>
+<div class="box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-primary" role="alert">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+    <form action="/home" method="POST" name="bksearch" onsubmit="return validate1()">
+        <div class="form-group">
+            <label for="exampleInputEmail1">ISBN</label>
+            <input type="text" name="isbn" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Enter ISBN">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Title</label>
+            <input type="text" name="title" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Enter Title">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Author</label>
+            <input type="text" name="author" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Enter Author">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <br>
+    <b>Results:</b>
+        <form action="/bookpage" method="POST">
+        <ol>
+        {% for b in book[0] %}
+            <input type="submit" onclick="getname('{{ b[0] }}')" value="{{ b[0] }}">
+             <p id="demo"></p>
+
+        {% endfor %}
+        </ol>
+
+            </form>
+</div>
+
+{% endblock %}

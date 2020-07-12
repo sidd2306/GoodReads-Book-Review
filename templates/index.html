@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title>Book Review</title>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+    <body>
+        <br>
+    <h1>Book Review</h1>
+        <br><br>
+        {% block content %}
+    <div class="box">
+        <a href="{{ url_for('auth.login') }}"><button type="button" class="btn btn-primary">Login</button></a>
+        <br><br><br>
+        <a href="{{ url_for('auth.register') }}"><button type="button" class="btn btn-primary">Register</button></a>
+    </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,2 +1,3 @@
-# GoodReads-Book-Review
-Review site for GoodReads Books build with Flask and Postgresql hosted on Heroku Data.
+# Project 1
+
+Web Programming with Python and JavaScript

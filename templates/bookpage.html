@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="box">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-primary" role="alert">
+        {{ messages[0] }}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <form action="/bookpage" method="POST">
+        <input type="text" id="result" name="title" readonly>
+        <input type="submit" value="Get Details" name="submit" id="submit" onclick="getIsbn('{{ isbn }}')"><br><br>
+        <br><br>
+    </form>
+    <div >
+        {% for d in data[0] %}
+        <h2>ISBN: </h2>
+        <h3>{{ d[0] }}</h3><br>
+        <h2>Title: </h2>
+        <h3>{{ d[1] }}</h3><br>
+        <h2>Author: </h2>
+        <h3>{{ d[2] }}</h3><br>
+        <h2>Year: </h2>
+        <h3>{{ d[3] }}</h3><br>
+        <h2>Rating: </h2>
+        <h3>{{ review[0][0][0] }}</h3><br>
+        <h2>Reviews: </h2>
+        <h3>{{ review[0][0][1] }}</h3><br>
+        <h2>No. of ratings: </h2>
+        <h3>{{ i_data[0] }}</h3><br>
+        <h2>Average Rating: </h2>
+        <h3>{{ i_data[1] }}</h3><br>
+        {% endfor %}
+    </div>
+
+    <form action="/bookpage" method="POST" id="review" name="review_form" onsubmit="return validate2()">
+        <h5 align="left">Review:</h5>
+        <input type="range" min="1" max="5" value="3" name="rating" class="slider" id="myRange"><br>
+        <h6 align="left">&nbsp;1&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;3&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;4&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;5</h6>
+        <input id="result1" name="bk_title">
+        <textarea rows="4" cols="50" name="review" form="review"></textarea>
+        <input type="submit" value="Submit Review" name="submit">
+    </form>
+</div>
+{% endblock %}
